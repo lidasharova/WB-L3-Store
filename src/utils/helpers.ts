@@ -12,11 +12,8 @@ export const genUUID = () => {
 
 export const addElement = (parent: HTMLElement, tag: string, options?: object) => {
   const element = document.createElement(tag) as HTMLElement;
-
   if (options) Object.assign(element, options);
-
   parent.appendChild(element);
-
   return element;
 };
 
