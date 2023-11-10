@@ -32,7 +32,7 @@ class FavouriteService {
     this._updCounters();
   }
 
-  async isInCart(favouriteProduct: ProductData) {
+  async isInFavourite(favouriteProduct: ProductData) {
     const favouriteProducts = await this.get();
     return favouriteProducts.some(({ id }) => id === favouriteProduct.id);
   }

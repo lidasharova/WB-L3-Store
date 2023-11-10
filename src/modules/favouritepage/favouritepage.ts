@@ -1,5 +1,5 @@
 import { Component } from '../component';
-import html from './homepage.tpl.html';
+import html from './favouritepage.tpl.html';
 import { favouriteService } from '../../services/favourite.service';
 import { ProductList } from '../productList/productList';
 
