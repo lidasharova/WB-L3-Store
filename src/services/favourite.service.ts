@@ -16,6 +16,7 @@ class FavouriteService {
   async removeProduct(favouriteProduct: ProductData) {
     const favouriteProducts = await this.get();
     await this.set(favouriteProducts.filter(({ id }) => id !== favouriteProduct.id));
+    this._updCounters();
   }
 
   async clear() {
@@ -40,10 +41,20 @@ class FavouriteService {
   private async _updCounters() {
     const favouriteProducts = await this.get();
     const count = favouriteProducts.length >= 10 ? '9+' : favouriteProducts.length;
-
     document.querySelectorAll('.js__favourite-counter').forEach(($el) => {
       ($el as HTMLElement).innerText = String(count || '');
     });
+
+    // отображение ссылки при наличии товаров в избранном
+    if (favouriteProducts.length > 0) {
+      document.querySelectorAll('.js__favourite-link').forEach(($el) => {
+        ($el as HTMLElement).classList.remove('hide');
+      });
+    } else {
+      document.querySelectorAll('.js__favourite-link').forEach(($el) => {
+        ($el as HTMLElement).classList.add('hide');
+      });
+    }
   }
 }
 

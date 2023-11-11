@@ -68,6 +68,7 @@ class ProductDetail extends Component {
     this.view.btnBuy.disabled = true;
   }
 
+  // метод добавления/удаления товара из избранного
   private async _toggleFavourite() {
     if (!this.product) return;
 
@@ -83,10 +84,10 @@ class ProductDetail extends Component {
   }
 
   private _setInFavourite() {
-    this.view.svgIconActive.style.display = 'block';
+    this.view.svgIconActive.classList.remove('hide');
   }
   private _deleteInFavourite() {
-    this.view.svgIconActive.style.display = 'none';
+    this.view.svgIconActive.classList.add('hide');
   }
 }
 
