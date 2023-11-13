@@ -1,6 +1,7 @@
 export const sendEvent = async (eventData: any) => {
+  const url = '/api/sendEvent';
   try {
-    await fetch('/api/sendEvent', {
+    await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -11,6 +12,3 @@ export const sendEvent = async (eventData: any) => {
     console.error('Error sending event:', error);
   }
 };
-
-
-

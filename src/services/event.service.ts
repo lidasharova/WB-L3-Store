@@ -1,6 +1,5 @@
-import { sendEvent } from '../api';
+import { sendEvent } from '../sendEventApi';
 import { ProductData } from 'types';
-import { getProductSecretKey } from '../utils/helpers';
 
 class EventService {
   sendEvent(type: string, payload: {}) {
@@ -21,10 +20,15 @@ class EventService {
     this.sendEvent('addToCard', { product });
   }
 
-  sendViewCardEvent(product: ProductData) {
-    const secretKey = getProductSecretKey(product.id);
+  async sendViewCardEvent(product: ProductData) {
+    console.log(product.id);
+    // получим secretKey карточки
+    const response = await fetch(`/api/getProductSecretKey?id=${product.id}`);
+    const secretKey = await response.json();
+
     const isPromo = product.log !== undefined;
     this.sendEvent(isPromo ? 'viewCardPromo' : 'viewCard', { product, secretKey });
+    console.log('событие попадания карточки во вьюпорт отправлено');
   }
 
   sendBuyEvent(orderId: number, totalPrice: number, productIds: number[]) {
