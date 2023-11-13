@@ -18,10 +18,11 @@ class EventService {
 
   sendAddToCartEvent(product: ProductData) {
     this.sendEvent('addToCard', { product });
+    console.log(product);
+    console.log('событие добавления в корзину отправлено');
   }
 
   async sendViewCardEvent(product: ProductData) {
-    console.log(product.id);
     // получим secretKey карточки
     const response = await fetch(`/api/getProductSecretKey?id=${product.id}`);
     const secretKey = await response.json();
@@ -31,8 +32,9 @@ class EventService {
     console.log('событие попадания карточки во вьюпорт отправлено');
   }
 
-  sendBuyEvent(orderId: number, totalPrice: number, productIds: number[]) {
+  sendOrderEvent(orderId: string, totalPrice: number, productIds: number[]) {
     this.sendEvent('purchase', { orderId, totalPrice, productIds });
+    console.log('событие оформления заказа отправлено');
   }
 }
 

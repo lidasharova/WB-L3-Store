@@ -4,6 +4,7 @@ import { formatPrice } from '../../utils/helpers';
 import { ProductData } from 'types';
 import html from './productDetail.tpl.html';
 import { cartService } from '../../services/cart.service';
+import { eventService } from '../../services/event.service';
 
 class ProductDetail extends Component {
   more: ProductList;
@@ -52,15 +53,17 @@ class ProductDetail extends Component {
 
   private _addToCart() {
     if (!this.product) return;
-
     cartService.addProduct(this.product);
     this._setInCart();
+
+    // отправка события добавления в корзину
+    eventService.sendAddToCartEvent(this.product);
   }
 
   private _setInCart() {
     this.view.btnBuy.innerText = '✓ В корзине';
     this.view.btnBuy.disabled = true;
-}
+  }
 }
 
 export const productDetailComp = new ProductDetail(html);
