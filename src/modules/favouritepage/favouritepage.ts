@@ -4,7 +4,7 @@ import { favouriteService } from '../../services/favourite.service';
 import { ProductList } from '../productList/productList';
 
 class Favouritepage extends Component {
-  favouriteProducts: ProductList;
+  favouriteProducts!: ProductList;
 
   constructor(props: any) {
     super(props);
@@ -15,7 +15,12 @@ class Favouritepage extends Component {
   async render() {
     try {
       const data = await favouriteService.get();
-      console.log(data);
+      if (data.length === 0) {
+        this.view.favEmpty.classList.add('is__empty');
+        return;
+      }
+      this.view.favEmpty.classList.remove('is__empty');
+
       this.favouriteProducts.update(data);
     } catch {
       console.error('Error fetching favourite products');

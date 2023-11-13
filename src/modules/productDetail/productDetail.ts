@@ -83,6 +83,7 @@ class ProductDetail extends Component {
     }
   }
 
+  // иконка избранного
   private _setInFavourite() {
     this.view.svgIconActive.classList.remove('hide');
   }
