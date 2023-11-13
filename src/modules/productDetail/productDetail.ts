@@ -60,7 +60,7 @@ class ProductDetail extends Component {
   private _setInCart() {
     this.view.btnBuy.innerText = '✓ В корзине';
     this.view.btnBuy.disabled = true;
-  }
+}
 }
 
 export const productDetailComp = new ProductDetail(html);
