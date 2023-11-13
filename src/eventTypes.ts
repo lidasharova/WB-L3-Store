@@ -17,8 +17,6 @@ export type ViewCardEvent = {
   timestamp: number;
 };
 
-//const productProperties = { /* свойства товара */ };
-// const viewType = productProperties.log ? 'viewCardPromo' : 'viewCard';
 
 // Добавление товара в корзину
 export type AddToCartEvent = {

@@ -3,6 +3,7 @@ import { notFoundComp } from './modules/notFound/notFound';
 import { homepageComp } from './modules/homepage/homepage';
 import { productDetailComp } from './modules/productDetail/productDetail';
 import { checkoutComp } from './modules/checkout/checkout';
+import { eventService } from './services/event.service';
 
 const ROUTES = {
   '/': homepageComp,
@@ -24,10 +25,10 @@ export default class Router {
 
   route(e: any) {
     e.preventDefault();
-
+    // отправка события
+    eventService.sendRouteEvent(window.location.pathname);
     // @ts-ignore
     const component = ROUTES[window.location.pathname] || notFoundComp;
-
     component.attach(this.$appRoot);
     component.render();
   }
