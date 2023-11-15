@@ -18,9 +18,7 @@ class ProductDetail extends Component {
 
   async render() {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams);
     const productId = Number(urlParams.get('id'));
-    console.log(productId);
 
     const productResp = await fetch(`/api/getProduct?id=${productId}`);
     this.product = await productResp.json();
