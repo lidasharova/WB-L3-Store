@@ -30,7 +30,6 @@ class Checkout extends Component {
     this.view.price.innerText = formatPrice(totalPrice);
     this.view.btnOrder.onclick = () => {
       this._makeOrder.bind(this);
-      console.log(orderId, totalPrice, productIds, this.products);
       eventService.sendOrderEvent(orderId, totalPrice, productIds);
     };
   }

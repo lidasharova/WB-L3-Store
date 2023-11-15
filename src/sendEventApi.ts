@@ -6,7 +6,7 @@ export const sendEvent = async (eventData: any) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(eventData) //отправляем строку JSON с данными
+      body: JSON.stringify(eventData)
     });
   } catch (error) {
     console.error('Error sending event:', error);
