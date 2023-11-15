@@ -1,4 +1,4 @@
-export const sendEvent = async (eventData: any) => {
+export const sendEventApi = async (eventData: any) => {
   const url = '/api/sendEvent';
   try {
     await fetch(url, {
