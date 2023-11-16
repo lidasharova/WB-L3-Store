@@ -68,3 +68,16 @@
     margin-top: 3em;
   }
 }
+
+.btnFav {
+  --heart-stroke-color: #000;
+
+  &:hover {
+    --heart-stroke-color: var(--key-color);
+  }
+
+  &.btnFavActive {
+    --heart-stroke-color: var(--key-color);
+    --heart-fill-color: var(--key-color);
+  }
+}

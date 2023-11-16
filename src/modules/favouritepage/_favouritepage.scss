@@ -1,0 +1,10 @@
+.favourite {
+  margin-top: 30px;
+}
+
+.favouritepage__empty {
+ display: none;
+  &.is__empty {
+    display: block;
+  }
+}

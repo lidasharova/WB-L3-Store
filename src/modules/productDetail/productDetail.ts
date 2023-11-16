@@ -4,6 +4,7 @@ import { formatPrice } from '../../utils/helpers';
 import { ProductData } from 'types';
 import html from './productDetail.tpl.html';
 import { cartService } from '../../services/cart.service';
+import { favouriteService } from '../../services/favourite.service';
 
 class ProductDetail extends Component {
   more: ProductList;
@@ -11,7 +12,6 @@ class ProductDetail extends Component {
 
   constructor(props: any) {
     super(props);
-
     this.more = new ProductList();
     this.more.attach(this.view.more);
   }
@@ -34,8 +34,12 @@ class ProductDetail extends Component {
     this.view.btnBuy.onclick = this._addToCart.bind(this);
 
     const isInCart = await cartService.isInCart(this.product);
+    const isInFavourite = await favouriteService.isInFavourite(this.product);
+
+    this.view.btnFav.onclick = this._toggleFavourite.bind(this);
 
     if (isInCart) this._setInCart();
+    if (isInFavourite) this.view.btnFav.classList.add('btnFavActive');
 
     fetch(`/api/getProductSecretKey?id=${id}`)
       .then((res) => res.json())
@@ -52,7 +56,6 @@ class ProductDetail extends Component {
 
   private _addToCart() {
     if (!this.product) return;
-
     cartService.addProduct(this.product);
     this._setInCart();
   }
@@ -60,6 +63,20 @@ class ProductDetail extends Component {
   private _setInCart() {
     this.view.btnBuy.innerText = '✓ В корзине';
     this.view.btnBuy.disabled = true;
+  }
+
+  private async _toggleFavourite() {
+    if (!this.product) return;
+
+    const isInFavourite = await favouriteService.isInFavourite(this.product);
+
+    if (isInFavourite) {
+      await favouriteService.removeProduct(this.product);
+      this.view.btnFav.classList.remove('btnFavActive');
+    } else {
+      await favouriteService.addProduct(this.product);
+      this.view.btnFav.classList.add('btnFavActive');
+    }
   }
 }
 
