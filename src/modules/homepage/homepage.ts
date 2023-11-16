@@ -16,7 +16,7 @@ class Homepage extends Component {
 
   render() {
     fetch('/api/getPopularProducts')
-      .then((res) => res.json())
+.then((res) => res.json())
       .then((products) => {
         this.popularProducts.update(products);
       });
