@@ -36,11 +36,10 @@ class ProductDetail extends Component {
     const isInCart = await cartService.isInCart(this.product);
     const isInFavourite = await favouriteService.isInFavourite(this.product);
 
-    // обработчик кнопки избранное
     this.view.btnFav.onclick = this._toggleFavourite.bind(this);
 
     if (isInCart) this._setInCart();
-    if (isInFavourite) this._setInFavourite();
+    if (isInFavourite) this.view.btnFav.classList.add('btnFavActive');
 
     fetch(`/api/getProductSecretKey?id=${id}`)
       .then((res) => res.json())
@@ -66,7 +65,6 @@ class ProductDetail extends Component {
     this.view.btnBuy.disabled = true;
   }
 
-  // метод добавления/удаления товара из избранного
   private async _toggleFavourite() {
     if (!this.product) return;
 
@@ -74,19 +72,11 @@ class ProductDetail extends Component {
 
     if (isInFavourite) {
       await favouriteService.removeProduct(this.product);
-      this._deleteInFavourite();
+      this.view.btnFav.classList.remove('btnFavActive');
     } else {
       await favouriteService.addProduct(this.product);
-      this._setInFavourite();
+      this.view.btnFav.classList.add('btnFavActive');
     }
-  }
-
-  // иконка избранного
-  private _setInFavourite() {
-    this.view.svgIconActive.classList.remove('hide');
-  }
-  private _deleteInFavourite() {
-    this.view.svgIconActive.classList.add('hide');
   }
 }
 

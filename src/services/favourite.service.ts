@@ -45,7 +45,6 @@ class FavouriteService {
       ($el as HTMLElement).innerText = String(count || '');
     });
 
-    // отображение ссылки при наличии товаров в избранном
     if (favouriteProducts.length > 0) {
       document.querySelectorAll('.js__favourite-link').forEach(($el) => {
         ($el as HTMLElement).classList.remove('hide');
