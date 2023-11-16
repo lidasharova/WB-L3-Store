@@ -3,15 +3,18 @@ import { Component } from '../component';
 import html from './homepage.tpl.html';
 
 import { ProductList } from '../productList/productList';
+import { SearchTips } from '../searchTips/searchTips';
 
 class Homepage extends Component {
   popularProducts: ProductList;
+  searchTips: SearchTips;
 
   constructor(props: any) {
     super(props);
-
     this.popularProducts = new ProductList();
     this.popularProducts.attach(this.view.popular);
+    this.searchTips = new SearchTips();
+    this.searchTips.attach(this.view.root);
   }
 
   render() {
