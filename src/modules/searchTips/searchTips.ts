@@ -31,16 +31,13 @@ export class SearchTips {
   }
 
   public renderTips() {
-    // получаем данные о подсказках
     const tipLinks = this.getDataTips();
 
-    // создаем массив с разметками подсказок
     const tipsHTML = tipLinks.map((tip) => {
       let templateTip = `<a href="${tip.link}">${tip.name}</a>`;
       return templateTip;
     });
 
-    // составляем строку подсказок
     let tipsString;
     if (tipLinks.length > 1) {
       tipsString = `Например, ${tipsHTML.slice(0, -1).join(', ')} или ${tipsHTML.slice(-1)}`;

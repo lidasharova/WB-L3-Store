@@ -28,7 +28,6 @@ export const formatPrice = (price: number) => {
   );
 };
 
-// функция кодирования строк в URL
 export const encodeQueryString = (queryString: string) => {
   const encodedString = encodeURIComponent(queryString);
   return encodedString;

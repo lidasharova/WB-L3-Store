@@ -13,8 +13,8 @@ class Homepage extends Component {
     super(props);
     this.popularProducts = new ProductList();
     this.popularProducts.attach(this.view.popular);
-    this.searchTips = new SearchTips(); // подсказки
-    this.searchTips.attach(this.view.root); // подсказки
+    this.searchTips = new SearchTips();
+    this.searchTips.attach(this.view.root);
   }
 
   render() {
