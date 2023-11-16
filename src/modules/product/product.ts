@@ -14,7 +14,6 @@ export class Product {
   observer: IntersectionObserver; //добавили observer в  карточку товара
 
   constructor(product: ProductData, params: ProductComponentParams = {}) {
-    // опции для IntersectionObserver
     const options = {
       root: null,
       rootMargin: '0px',
@@ -30,7 +29,6 @@ export class Product {
     $root.appendChild(this.view.root);
   }
 
-  // ф-ция обработчик карточки во вьюпорте
   callbackObserver = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -48,7 +46,6 @@ export class Product {
     this.view.price.innerText = formatPrice(salePriceU);
 
     if (this.params.isHorizontal) this.view.root.classList.add('is__horizontal');
-    // повесим отслеживание на карточку
     this.observer.observe(this.view.root);
   }
 }

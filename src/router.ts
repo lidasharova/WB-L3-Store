@@ -25,7 +25,6 @@ export default class Router {
 
   route(e: any) {
     e.preventDefault();
-    // отправка события
     eventService.sendRouteEvent(window.location.pathname);
     // @ts-ignore
     const component = ROUTES[window.location.pathname] || notFoundComp;

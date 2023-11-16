@@ -55,8 +55,6 @@ class ProductDetail extends Component {
     if (!this.product) return;
     cartService.addProduct(this.product);
     this._setInCart();
-
-    // отправка события добавления в корзину
     eventService.sendAddToCartEvent(this.product);
   }
 
